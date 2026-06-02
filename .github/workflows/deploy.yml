@@ -4,9 +4,16 @@ on:
     branches: [main]
 permissions:
   contents: read
+
+env:
+  REGISTRY: zot.manx-turtle.ts.net
+  IMAGE: kios-web
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Native arm64 runner: no QEMU/buildx needed, and host-level docker
+    # build/push sees /etc/hosts directly (mirrors raphi011/know's deploy).
+    runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
 
@@ -15,26 +22,30 @@ jobs:
         run: echo "tag=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Connect to Tailscale
-        uses: tailscale/github-action@v3
+        uses: tailscale/github-action@v4
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
+          # Keep system DNS so Docker Hub still resolves; reach Zot via /etc/hosts.
+          args: --accept-dns=false
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Set up QEMU (arm64 emulation)
-        uses: docker/setup-qemu-action@v3
-
-      - name: Build and push arm64 image to Zot
+      - name: Add Zot registry to /etc/hosts
         run: |
-          docker buildx build \
-            --platform linux/arm64 \
-            --provenance=false --sbom=false \
-            --tag zot.manx-turtle.ts.net/kios-web:${{ steps.tag.outputs.tag }} \
-            --tag zot.manx-turtle.ts.net/kios-web:latest \
-            --push .
+          ZOT_IP=$(tailscale ip -4 zot)
+          echo "$ZOT_IP ${{ env.REGISTRY }}" | sudo tee -a /etc/hosts
+
+      - name: Build image (native arm64)
+        run: |
+          docker build \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE }}:${{ steps.tag.outputs.tag }} \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE }}:latest \
+            .
+
+      - name: Push image to Zot
+        run: |
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE }}:${{ steps.tag.outputs.tag }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE }}:latest
 
       - name: Bump image tag in turingpi-k8s
         env:
