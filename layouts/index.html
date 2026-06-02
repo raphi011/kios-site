@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" data-hero="split">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kios — A reader for the slow web</title>
+  <meta name="description" content="Kios is a calm, native iOS reader for your own EPUB library. Beautifully set type, gentle reading stats, and sync with KOReader and Kobo. Now in TestFlight beta." />
+  <link rel="icon" href="/site-assets/app-icon.png" />
+  {{ $css := resources.Get "site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+  {{ partial "custom-head.html" . }}
+</head>
+<body>
+
+  <!-- ── Nav ───────────────────────────────────────────── -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Kios home">
+        <img src="/site-assets/app-icon.png" alt="" />
+        <span class="word">Kios<span class="reddot">.</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features" class="hide-sm">Features</a>
+        <a href="#faq" class="hide-sm">FAQ</a>
+        <a class="btn btn-primary" href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">Join the beta</a>
+      </nav>
+    </div>
+  </header>
+
+  <a id="top"></a>
+
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <section class="hero">
+
+    <!-- Variant A · Split -->
+    <div class="hero-variant" id="hero-split">
+      <div class="wrap hero-split-grid">
+        <div class="hero-split-copy">
+          <span class="pill"><span class="ring"></span>Now in TestFlight beta</span>
+          <h1 class="display">A reader for the<br>slow web<span class="reddot">.</span></h1>
+          <p class="lede">Kios is a calm, native home for the books you actually want to finish — <em>your own EPUBs</em>, beautifully set and quietly tracked.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 4 3 11l6 2.5L21 4Z"/><path d="M21 4 11 21l-2-7.5L21 4Z"/></svg>
+              Join the TestFlight beta
+            </a>
+
+          </div>
+        </div>
+        <div class="hero-split-art">
+          <img class="device-cutout" src="/site-assets/home-framed.png" alt="The Kios home screen showing today's reading and your library" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant B · Manifesto -->
+    <div class="hero-variant" id="hero-manifesto">
+      <div class="wrap hero-manifesto-inner">
+        <span class="pill"><span class="ring"></span>Now in TestFlight beta</span>
+        <h1 class="display"><span class="mf-line">Fewer tabs.</span><span class="mf-line">One good book<span class="reddot">.</span></span></h1>
+        <p class="lede">Kios turns your iPhone back into a reading device — a quiet shelf of your own EPUBs, set in type you'd actually choose, with progress that follows you everywhere.</p>
+        <div class="cta-row" style="justify-content:center">
+          <a class="btn btn-primary" href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 4 3 11l6 2.5L21 4Z"/><path d="M21 4 11 21l-2-7.5L21 4Z"/></svg>
+            Join the TestFlight beta
+          </a>
+        </div>
+        <div class="hero-fan">
+          <img class="fan-l device-cutout" src="/site-assets/home-light-framed.png" alt="Kios library" />
+          <img class="fan-c device-cutout" src="/site-assets/home-framed.png" alt="Kios today screen" />
+          <img class="fan-r device-cutout" src="/site-assets/reader-framed.png" alt="Kios reader" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant C · Immersive -->
+    <div class="hero-variant" id="hero-immersive">
+      <div class="hero-immersive-grid">
+        <div class="hero-immersive-copy">
+          <span class="pill"><span class="ring"></span>Now in TestFlight beta</span>
+          <h1 class="display">The page,<br>and nothing<br>else<span class="reddot">.</span></h1>
+          <p class="lede">Edge-to-edge type. Tap once for your place in the chapter; tap again and the interface disappears. <em>Just you and the book.</em></p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 4 3 11l6 2.5L21 4Z"/><path d="M21 4 11 21l-2-7.5L21 4Z"/></svg>
+              Join the TestFlight beta
+            </a>
+          </div>
+        </div>
+        <div class="hero-immersive-art">
+          <img class="device-cutout" src="/site-assets/reader-framed.png" alt="The Kios reader showing a book page with chapter progress" />
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ── Features ──────────────────────────────────────── -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What's inside<span class="dot">.</span></p>
+        <h2 class="section-title">Built for finishing books, not collecting tabs.</h2>
+      </div>
+
+      <div style="margin-top: clamp(36px, 5vw, 64px)">
+
+        <!-- Reading -->
+        <div class="feature">
+          <div class="feature-copy">
+            <p class="eyebrow">Reading</p>
+            <h3 class="ftitle">An undistracted page.</h3>
+            <p>Edge-to-edge typography in a typeface you choose. Tap once for chapter progress and controls — tap again, and they're gone.</p>
+            <ul class="feature-list">
+              <li>Highlight and annotate inline</li>
+              <li>Tap-to-reveal controls &amp; chapter scrubber</li>
+              <li>Paper and night themes</li>
+              <li>Choose your serif and text size</li>
+            </ul>
+          </div>
+          <div class="feature-art">
+            <img class="device-cutout" src="/site-assets/reader-framed.png" alt="A book open in the Kios reader with a progress bar" />
+          </div>
+        </div>
+
+        <!-- Library -->
+        <div class="feature flip">
+          <div class="feature-copy">
+            <p class="eyebrow">Library</p>
+            <h3 class="ftitle">Your whole shelf, at a glance.</h3>
+            <p>Pick up exactly where you left off. Covers, progress, and time-to-finish for everything you're in the middle of.</p>
+            <ul class="feature-list">
+              <li>Continue reading, right at the top</li>
+              <li>Import your own EPUBs from Files</li>
+              <li>Progress and percentage per book</li>
+              <li>Filter by reading, unread or finished</li>
+            </ul>
+          </div>
+          <div class="feature-art">
+            <img class="device-cutout" src="/site-assets/home-framed.png" alt="The Kios today screen with continue-reading and library" />
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="feature">
+          <div class="feature-copy">
+            <p class="eyebrow">Statistics</p>
+            <h3 class="ftitle">Reading, measured gently.</h3>
+            <p>A streak worth keeping, read-time that quietly adds up, and a full year of reading days — without turning a good habit into a leaderboard.</p>
+            <ul class="feature-list">
+              <li>Daily streak and read-time</li>
+              <li>A year of reading days</li>
+              <li>Week, month, year and all-time</li>
+              <li>Personal records, kept on your device</li>
+            </ul>
+          </div>
+          <div class="feature-art">
+            <div class="screen-frame"><img src="/site-assets/stats-year-screen.png" alt="The Kios statistics screen showing read time, pages and reading days" /></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sync note ─────────────────────────────────────── -->
+  <section class="section" style="padding-block: clamp(40px,6vw,72px); background: var(--surface-alt);">
+    <div class="wrap" style="display:flex; flex-wrap:wrap; gap:24px 56px; align-items:baseline; justify-content:space-between;">
+      <div style="max-width: 24ch;">
+        <p class="eyebrow">Sync<span class="dot">.</span></p>
+        <h3 class="section-title" style="font-size:clamp(1.6rem,2.6vw,2.2rem); margin-top:14px;">Already keep a reading position on KOReader or Kobo?</h3>
+      </div>
+      <p class="lede" style="max-width:42ch; margin:0;">Kios speaks both <em>KOReader Sync</em> and <em>Kobo Sync</em>, so your place follows you between Kios and the e-reader on your nightstand.</p>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────── -->
+  <section class="section" id="faq">
+    <div class="wrap faq-grid">
+      <div class="section-head">
+        <p class="eyebrow">Questions<span class="dot">.</span></p>
+        <h2 class="section-title">Good to know before you board.</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>What is Kios?<span class="plus"></span></summary>
+          <div class="faq-answer">Kios is a native iOS reader for the EPUBs you already own. No store, no feed, no recommendations — just a calm place to keep, read and finish your own books, with type and themes you control.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I join the beta?<span class="plus"></span></summary>
+          <div class="faq-answer">Kios is currently invite-free on Apple TestFlight. <a href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">Open the TestFlight link</a>, install Apple's TestFlight app if you don't have it, and you'll get every new build automatically.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Which formats does it read?<span class="plus"></span></summary>
+          <div class="faq-answer">Kios reads EPUB. Import your books straight from Files, iCloud Drive or any share sheet — they live in your library on your device.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can it sync with my e-reader?<span class="plus"></span></summary>
+          <div class="faq-answer">Yes. Kios supports both KOReader Sync and Kobo Sync, so your reading position stays in step between Kios and your e-reader.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Where are my books and data stored?<span class="plus"></span></summary>
+          <div class="faq-answer">On your iPhone. Your library, highlights and statistics stay on the device — nothing is uploaded unless you choose to turn on sync. More detail in our <a href="/privacy/">privacy policy</a>.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it cost anything?<span class="plus"></span></summary>
+          <div class="faq-answer">Kios is free while it's in beta, with no ads and no tracking. Pricing after launch hasn't been decided yet — beta readers will hear first.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA band ──────────────────────────────────────── -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta-band">
+        <img class="cta-icon" src="/site-assets/app-icon.png" alt="" />
+        <p class="eyebrow" style="color:var(--night-muted)">Now in TestFlight beta<span class="dot">.</span></p>
+        <h2 class="display" style="font-size:clamp(2.4rem,5vw,4rem); margin-top:14px;">Start reading today.</h2>
+        <p class="cta-sub">Bring your own books to a quieter shelf. We'd love your notes from the margins.</p>
+        <a class="btn btn-primary" href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 4 3 11l6 2.5L21 4Z"/><path d="M21 4 11 21l-2-7.5L21 4Z"/></svg>
+          Join the TestFlight beta
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <img src="/site-assets/app-icon.png" alt="" />
+            <span class="word">Kios<span class="reddot">.</span></span>
+          </div>
+          <p class="footer-tag">A reader for the slow web.</p>
+        </div>
+        <div class="footer-col">
+          <h4>App</h4>
+          <ul>
+            <li><a href="#features">Reading</a></li>
+            <li><a href="#features">Library</a></li>
+            <li><a href="#features">Statistics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Beta &amp; legal</h4>
+          <ul>
+            <li><a href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">TestFlight beta</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="/privacy/">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>© 2026 Kios · A reader for the slow web</span>
+        <span>Made for the slow web</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Nav scroll state ──────────────────────────────── -->
+  <script>
+    (function () {
+      const nav = document.getElementById('nav');
+      const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>
