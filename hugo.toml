@@ -1,0 +1,7 @@
+baseURL = "https://kios.raphi011.dev/"
+languageCode = "en-us"
+title = "Kios"
+enableRobotsTXT = true
+
+[params]
+  description = "A calm, native iOS reader for your own EPUB library."
