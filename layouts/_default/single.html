@@ -41,7 +41,7 @@
       <div class="legal-body">
 
         <h2>The short version</h2>
-        <p>Kios is a reader for books you already own. We don't run ad networks, we don't sell data, and we don't build a profile of you. The app works fully offline; the only time information leaves your device is when <em>you</em> choose to connect a sync service.</p>
+        <p>Kios is a reader for books you already own. We don't run ad networks, we don't sell data, and we don't build a profile of you. Your reading content stays on your device. The only things that leave it are the sync traffic <em>you</em> opt into by connecting a sync service, and anonymous crash &amp; performance diagnostics (detailed below).</p>
 
         <h2>What stays on your device</h2>
         <p>The following is stored locally on your iPhone and is never sent to us:</p>
@@ -60,8 +60,14 @@
         </ul>
         <p>These connections are made to the servers <em>you</em> enter. Kios does not operate these servers and does not receive a copy of that data. Sync is off until you turn it on, and can be removed at any time.</p>
 
-        <h2>Analytics &amp; tracking</h2>
-        <p>Kios does not include third-party advertising or analytics SDKs and does not use tracking identifiers. During the TestFlight beta, Apple may collect basic crash and usage information on our behalf as described in Apple's own privacy terms; this is governed by Apple and TestFlight, not by Kios.</p>
+        <h2>Crash &amp; performance diagnostics</h2>
+        <p>Kios includes no advertising SDKs, no usage-analytics services, and no tracking identifiers. The released app (TestFlight and the App Store) does collect <strong>crash and performance diagnostics</strong> so we can find and fix crashes and stability problems:</p>
+        <ul>
+          <li><strong>What</strong> — crash reports, app-hang and watchdog reports, a sampled set of performance traces, and the technical context at the moment of an error: call stacks, the on-screen view layout, and device/OS details. Never the contents of your books, highlights or notes.</li>
+          <li><strong>Where</strong> — these reports are sent to <a href="https://sentry.io" target="_blank" rel="noopener">Sentry</a> (operated by Functional Software, Inc.), hosted in the United States.</li>
+          <li><strong>Who</strong> — each report carries only an anonymous, random per-install identifier (it resets if you reinstall), used to count how many installs a crash affects. No name, email, account, or IP address is attached.</li>
+        </ul>
+        <p>Development builds send nothing. Apple may also report aggregated crash and usage data through App Store Connect if you have opted in under <em>Settings → Privacy &amp; Security → Analytics &amp; Improvements</em>; that is governed by Apple, not Kios.</p>
 
         <h2>Data we never collect</h2>
         <p>We do not collect your name, contacts, location, advertising identifier, or the contents of your books and notes.</p>
