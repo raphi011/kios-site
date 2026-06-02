@@ -1,0 +1,24 @@
+{
+	admin off
+	auto_https off
+}
+
+:8080 {
+	log
+
+	handle /health {
+		respond "OK" 200
+	}
+
+	handle {
+		root * /srv
+		encode gzip zstd
+		file_server
+		try_files {path} {path}/ {path}/index.html {path}.html
+		header {
+			X-Content-Type-Options "nosniff"
+			X-Frame-Options "DENY"
+			Cache-Control "public, max-age=300, must-revalidate"
+		}
+	}
+}
