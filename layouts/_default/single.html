@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Kios</title>
+  <meta name="description" content="How Kios handles your reading data. Your library, highlights and statistics stay on your device." />
+  <link rel="icon" href="/site-assets/app-icon.png" />
+  {{ $css := resources.Get "site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+  {{ partial "custom-head.html" . }}
+</head>
+<body>
+
+  <!-- ── Nav ───────────────────────────────────────────── -->
+  <header class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Kios home">
+        <img src="/site-assets/app-icon.png" alt="" />
+        <span class="word">Kios<span class="reddot">.</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="/#features" class="hide-sm">Features</a>
+        <a href="/#faq" class="hide-sm">FAQ</a>
+        <a class="btn btn-primary" href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">Join the beta</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Legal ─────────────────────────────────────────── -->
+  <main class="legal">
+    <div class="wrap">
+      <div class="legal-head">
+        <p class="eyebrow">Legal<span class="dot">.</span></p>
+        <h1 class="display">Privacy policy</h1>
+        <p class="lede" style="max-width:52ch;">Kios is built to keep your reading to yourself. Your library, your highlights and your statistics live on your device — not on our servers.</p>
+        <p class="legal-updated">Last updated · 2 June 2026</p>
+      </div>
+
+      <div class="legal-body">
+
+        <h2>The short version</h2>
+        <p>Kios is a reader for books you already own. We don't run ad networks, we don't sell data, and we don't build a profile of you. The app works fully offline; the only time information leaves your device is when <em>you</em> choose to connect a sync service.</p>
+
+        <h2>What stays on your device</h2>
+        <p>The following is stored locally on your iPhone and is never sent to us:</p>
+        <ul>
+          <li>Your imported EPUB books and their covers</li>
+          <li>Reading progress, bookmarks, highlights and notes</li>
+          <li>Reading statistics — read-time, pages, streaks and history</li>
+          <li>Your app preferences, such as themes and typeface</li>
+        </ul>
+
+        <h2>Optional sync</h2>
+        <p>If you choose to enable a sync service, Kios sends only what that service needs to keep your reading position in step:</p>
+        <ul>
+          <li><strong>KOReader Sync</strong> — the server address, your username, and reading-position data, sent directly to the sync server you configure.</li>
+          <li><strong>Kobo Sync</strong> — the credentials and progress data required by the Kobo sync endpoint you configure.</li>
+        </ul>
+        <p>These connections are made to the servers <em>you</em> enter. Kios does not operate these servers and does not receive a copy of that data. Sync is off until you turn it on, and can be removed at any time.</p>
+
+        <h2>Analytics &amp; tracking</h2>
+        <p>Kios does not include third-party advertising or analytics SDKs and does not use tracking identifiers. During the TestFlight beta, Apple may collect basic crash and usage information on our behalf as described in Apple's own privacy terms; this is governed by Apple and TestFlight, not by Kios.</p>
+
+        <h2>Data we never collect</h2>
+        <p>We do not collect your name, contacts, location, advertising identifier, or the contents of your books and notes.</p>
+
+        <h2>Children</h2>
+        <p>Kios is not directed at children under 13 and does not knowingly collect personal information from them.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>If this policy changes, the "last updated" date above will change with it. Material changes will be noted in the app or on this page.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about privacy in Kios? Reach us on <a href="https://discord.gg/spTFCkhP" target="_blank" rel="noopener">Discord</a> or at <a href="mailto:raphi011@gmail.com">raphi011@gmail.com</a>.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <img src="/site-assets/app-icon.png" alt="" />
+            <span class="word">Kios<span class="reddot">.</span></span>
+          </div>
+          <p class="footer-tag">A reader for the slow web.</p>
+        </div>
+        <div class="footer-col">
+          <h4>App</h4>
+          <ul>
+            <li><a href="/#features">Reading</a></li>
+            <li><a href="/#features">Library</a></li>
+            <li><a href="/#features">Statistics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Beta &amp; legal</h4>
+          <ul>
+            <li><a href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">TestFlight beta</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+            <li><a href="/privacy/">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>© 2026 Kios · A reader for the slow web</span>
+        <span>Made for the slow web</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
