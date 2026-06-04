@@ -466,7 +466,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; color: var(--ink); mar
   padding: 10px 16px 10px 0; border-bottom: 1px solid var(--rule-strong);
 }
 .docs-table td, .docs-table tbody th { padding: 13px 16px 13px 0; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: top; }
-.docs-table tbody th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.docs-table tbody th { color: var(--ink); font-weight: 600; white-space: nowrap; text-align: left; }
 .docs-table tr { scroll-margin-top: 72px; }
 
 /* status badges */
