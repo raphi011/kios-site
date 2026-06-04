@@ -120,7 +120,61 @@
         </div>
       </section>
 
-      <!-- TASK 7: kobo-sync + opds sections -->
+      <!-- ── Kobo sync ─────────────────────────────────────── -->
+      <section class="docs-section" id="kobo-sync">
+        <p class="eyebrow">Setup<span class="dot">.</span></p>
+        <h2>Kobo sync</h2>
+        <div class="docs-prose">
+          <p>The same protocol a Kobo e-reader speaks — the server keeps Kios, your Kobo and its own web reader in step: catalog, covers and position. Add it in <strong>Settings → Library sync → Add source</strong>, kind <strong>Kobo sync</strong>.</p>
+          <p>There's a single field beyond the display name: the personal sync URL your server generates for you, token included.</p>
+        </div>
+        <div class="field-list">
+          <div class="field-row"><span class="field-key">Display name</span><span class="field-val">anything — Kios suggests one from the host</span></div>
+          <div class="field-row"><span class="field-key">Kobo sync URL</span><span class="field-val">the full per-user URL, token included — per server below</span></div>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Calibre-Web-Automated / Calibre-Web<span class="plus"></span></summary>
+            <div class="faq-answer"><p>Enable Kobo sync in the admin feature settings, then generate your token on your user profile page. The URL looks like <code>https://your-server:8083/kobo/your-token</code>.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Grimmory / BookLore<span class="plus"></span></summary>
+            <div class="faq-answer"><p>Each user gets a sync token in their settings. Mind the <code>/api</code> prefix: <code>https://your-server:6062/api/kobo/your-token</code>.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Komga<span class="plus"></span></summary>
+            <div class="faq-answer"><p><code>https://your-server:25600/kobo/your-api-key</code> with a Komga API key. Catalog and download answer correctly in our wire tests, but Kobo <em>position</em> sync against Komga is untested — KOReader sync and OPDS progression are Komga's proven routes.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ── OPDS ──────────────────────────────────────────── -->
+      <section class="docs-section" id="opds">
+        <p class="eyebrow">Setup<span class="dot">.</span></p>
+        <h2>OPDS catalogs</h2>
+        <div class="docs-prose">
+          <p>Every server on this page publishes an OPDS catalog — browse your library and download books straight into Kios. Add it in <strong>Settings → Library sync → Add source</strong>, kind <strong>OPDS</strong>. Username and password are optional: fill both, or neither.</p>
+          <p>Where the catalog also advertises a Readium <em>progression</em> endpoint — Komga today, Stump experimentally — your reading position syncs through the same source automatically. Nothing extra to configure.</p>
+        </div>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead>
+              <tr><th scope="col">Server</th><th scope="col">Catalog URL</th><th scope="col">Auth</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Calibre-Web / CWA</th><td><code>https://your-server:8083/opds</code></td><td>HTTP Basic</td></tr>
+              <tr><th scope="row">Grimmory / BookLore</th><td><code>https://your-server:6062/api/v1/opds</code></td><td>dedicated OPDS account</td></tr>
+              <tr><th scope="row">Komga</th><td><code>https://your-server:25600/opds/v2/catalog</code></td><td>HTTP Basic — login is your <em>email</em></td></tr>
+              <tr><th scope="row">Kavita</th><td><code>https://your-server:5000/api/opds/your-api-key</code></td><td>key in the URL</td></tr>
+              <tr><th scope="row">Stump</th><td><code>https://your-server:10801/opds/v2.0/catalog</code></td><td>HTTP Basic</td></tr>
+              <tr><th scope="row">Calibre content server</th><td><code>https://your-server:8080/opds</code></td><td>HTTP Basic, if enabled</td></tr>
+              <tr><th scope="row">COPS</th><td><code>https://your-server/feed</code></td><td>install-dependent</td></tr>
+              <tr><th scope="row">Storyteller</th><td><code>https://your-server:8001/opds</code></td><td>HTTP Basic</td></tr>
+              <tr><th scope="row">Ubooquity</th><td><code>https://your-server:2202/opds-books</code></td><td>install-dependent</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <!-- TASK 8: troubleshooting section -->
 
