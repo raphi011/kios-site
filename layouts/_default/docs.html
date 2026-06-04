@@ -46,7 +46,37 @@
         </div>
       </section>
 
-      <!-- TASK 5: servers section -->
+      <!-- ── Servers ───────────────────────────────────────── -->
+      <section class="docs-section" id="servers">
+        <p class="eyebrow">Compatibility<span class="dot">.</span></p>
+        <h2>Servers</h2>
+        <div class="docs-prose">
+          <p><span class="badge badge-verified">Verified</span> means we've run Kios against the server and sync works. <span class="badge badge-untested">Untested</span> means the server implements a protocol Kios speaks, but the pair hasn't been exercised yet — reports very welcome on <a href="https://discord.gg/spTFCkhP" target="_blank" rel="noopener">Discord</a>.</p>
+        </div>
+        <div class="docs-table-wrap">
+          <table class="docs-table">
+            <thead>
+              <tr><th>Server</th><th>Browse &amp; download</th><th>Progress sync</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr id="grimmory"><td>Grimmory</td><td>OPDS 1.2</td><td>KOReader sync · Kobo sync</td><td><span class="badge badge-verified">Verified</span></td></tr>
+              <tr id="cwa"><td>Calibre-Web-Automated</td><td>OPDS 1.2</td><td>KOReader sync · Kobo sync</td><td><span class="badge badge-verified">Verified</span></td></tr>
+              <tr id="komga"><td>Komga</td><td>OPDS 1.2 + 2.0</td><td>KOReader sync · OPDS progression</td><td><span class="badge badge-verified">Verified</span></td></tr>
+              <tr id="booklore"><td>BookLore</td><td>OPDS 1.2</td><td>KOReader sync · Kobo sync</td><td><span class="badge badge-untested">Untested</span></td></tr>
+              <tr id="calibre-web"><td>Calibre-Web</td><td>OPDS 1.2</td><td>Kobo sync</td><td><span class="badge badge-untested">Untested</span></td></tr>
+              <tr id="kavita"><td>Kavita</td><td>OPDS 1.2</td><td>KOReader sync (v0.8.7+)</td><td><span class="badge badge-untested">Untested</span></td></tr>
+              <tr id="stump"><td>Stump</td><td>OPDS 1.2 + 2.0</td><td>KOReader sync (off by default) · OPDS progression</td><td><span class="badge badge-untested">Untested</span></td></tr>
+              <tr id="calibre"><td>Calibre content server</td><td>OPDS 1.2</td><td>— browse only</td><td><span class="badge badge-untested">Untested</span></td></tr>
+              <tr id="cops"><td>COPS</td><td>OPDS 1.2</td><td>— browse only</td><td><span class="badge badge-untested">Untested</span></td></tr>
+              <tr id="storyteller"><td>Storyteller</td><td>OPDS 1.2</td><td>— browse only</td><td><span class="badge badge-untested">Untested</span></td></tr>
+              <tr id="ubooquity"><td>Ubooquity</td><td>OPDS 1.2</td><td>— browse only</td><td><span class="badge badge-untested">Untested</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="docs-prose">
+          <p class="docs-fine">Grimmory is a fork of BookLore — their protocol surfaces match, so BookLore should behave identically. Storyteller and Ubooquity sync position only through their own proprietary APIs, which standards-based clients can't reach — browsing still works. Stump's Kobo endpoints deliver books but never sync position; use its OPDS progression or KOReader sync instead.</p>
+        </div>
+      </section>
 
       <!-- TASK 6: koreader-sync section -->
 
