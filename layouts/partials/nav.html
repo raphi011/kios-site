@@ -1,0 +1,13 @@
+<header class="nav{{ if not .IsHome }} scrolled{{ end }}" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="{{ if .IsHome }}#top{{ else }}/{{ end }}" aria-label="Kios home">
+      <img src="/site-assets/app-icon.png" alt="" />
+      <span class="word">Kios<span class="reddot">.</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="{{ if not .IsHome }}/{{ end }}#features" class="hide-sm">Features</a>
+      <a href="{{ if not .IsHome }}/{{ end }}#faq" class="hide-sm">FAQ</a>
+      <a class="btn btn-primary" href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">Join the beta</a>
+    </nav>
+  </div>
+</header>
