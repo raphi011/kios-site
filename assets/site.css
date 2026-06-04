@@ -432,7 +432,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; color: var(--ink); mar
 /* ── Docs page ───────────────────────────────────────────── */
 .docs { padding-block: clamp(48px, 7vw, 96px); }
 .docs-head .display { font-size: clamp(2.4rem, 5vw, 4rem); margin-top: 14px; }
-.docs-head .lede { margin-top: 22px; }
+.docs-head .lede { margin-top: 22px; max-width: 46ch; }
 
 .docs-toc {
   display: flex; flex-wrap: wrap; gap: 10px 24px;
