@@ -80,7 +80,7 @@
 
       <!-- ── KOReader sync ─────────────────────────────────── -->
       <section class="docs-section" id="koreader-sync">
-        <p class="eyebrow">Setup<span class="dot">.</span></p>
+        <p class="eyebrow">Progress sync<span class="dot">.</span></p>
         <h2>KOReader sync</h2>
         <div class="docs-prose">
           <p>The most widely implemented progress protocol — and Kios's global fallback for any book that isn't tied to a Kobo or OPDS source. Configure it in <strong>Settings → Progress sync</strong>.</p>
@@ -122,7 +122,7 @@
 
       <!-- ── Kobo sync ─────────────────────────────────────── -->
       <section class="docs-section" id="kobo-sync">
-        <p class="eyebrow">Setup<span class="dot">.</span></p>
+        <p class="eyebrow">Library sync<span class="dot">.</span></p>
         <h2>Kobo sync</h2>
         <div class="docs-prose">
           <p>The same protocol a Kobo e-reader speaks — the server keeps Kios, your Kobo and its own web reader in step: catalog, covers and position. Add it in <strong>Settings → Library sync → Add source</strong>, kind <strong>Kobo sync</strong>.</p>
@@ -142,7 +142,7 @@
             <div class="faq-answer"><p>Each user gets a sync token in their settings. Mind the <code>/api</code> prefix: <code>https://your-server:6062/api/kobo/your-token</code>.</p></div>
           </details>
           <details class="faq-item">
-            <summary>Komga<span class="plus"></span></summary>
+            <summary>Komga (untested)<span class="plus"></span></summary>
             <div class="faq-answer"><p><code>https://your-server:25600/kobo/your-api-key</code> with a Komga API key. Catalog and download answer correctly in our wire tests, but Kobo <em>position</em> sync against Komga is untested — KOReader sync and OPDS progression are Komga's proven routes.</p></div>
           </details>
         </div>
@@ -150,7 +150,7 @@
 
       <!-- ── OPDS ──────────────────────────────────────────── -->
       <section class="docs-section" id="opds">
-        <p class="eyebrow">Setup<span class="dot">.</span></p>
+        <p class="eyebrow">Catalogs<span class="dot">.</span></p>
         <h2>OPDS catalogs</h2>
         <div class="docs-prose">
           <p>Every server on this page publishes an OPDS catalog — browse your library and download books straight into Kios. Add it in <strong>Settings → Library sync → Add source</strong>, kind <strong>OPDS</strong>. Username and password are optional: fill both, or neither.</p>
@@ -162,7 +162,7 @@
               <tr><th scope="col">Server</th><th scope="col">Catalog URL</th><th scope="col">Auth</th></tr>
             </thead>
             <tbody>
-              <tr><th scope="row">Calibre-Web / CWA</th><td><code>https://your-server:8083/opds</code></td><td>HTTP Basic</td></tr>
+              <tr><th scope="row">Calibre-Web-Automated / Calibre-Web</th><td><code>https://your-server:8083/opds</code></td><td>HTTP Basic</td></tr>
               <tr><th scope="row">Grimmory / BookLore</th><td><code>https://your-server:6062/api/v1/opds</code></td><td>dedicated OPDS account</td></tr>
               <tr><th scope="row">Komga</th><td><code>https://your-server:25600/opds/v2/catalog</code></td><td>HTTP Basic — login is your <em>email</em></td></tr>
               <tr><th scope="row">Kavita</th><td><code>https://your-server:5000/api/opds/your-api-key</code></td><td>key in the URL</td></tr>
