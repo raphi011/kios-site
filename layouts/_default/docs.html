@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Sync servers &amp; setup — Kios docs</title>
+  <meta name="description" content="Which self-hosted ebook servers Kios syncs with — Komga, Calibre-Web, Grimmory, Kavita, Stump and more — and how to configure KOReader sync, Kobo sync and OPDS." />
+  <link rel="icon" href="/site-assets/app-icon.png" />
+  {{ $css := resources.Get "site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+  {{ partial "custom-head.html" . }}
+</head>
+<body>
+
+  <!-- ── Nav ───────────────────────────────────────────── -->
+  {{ partial "nav.html" . }}
+
+  <!-- ── Docs ──────────────────────────────────────────── -->
+  <main class="docs">
+    <div class="wrap">
+
+      <div class="docs-head">
+        <p class="eyebrow">Documentation<span class="dot">.</span></p>
+        <h1 class="display">Sync, with your<br>own server<span class="reddot">.</span></h1>
+        <p class="lede" style="max-width:46ch;">Kios keeps your reading position in step with the library server you already run — over KOReader sync, Kobo sync or OPDS. Here's what works, and exactly what to type in.</p>
+      </div>
+
+      <nav class="docs-toc" aria-label="On this page">
+        <a href="#how-it-works">How sync works</a>
+        <a href="#servers">Servers</a>
+        <a href="#koreader-sync">KOReader sync</a>
+        <a href="#kobo-sync">Kobo sync</a>
+        <a href="#opds">OPDS</a>
+        <a href="#troubleshooting">Troubleshooting</a>
+      </nav>
+
+      <!-- ── How sync works ────────────────────────────────── -->
+      <section class="docs-section" id="how-it-works">
+        <p class="eyebrow">Behaviour<span class="dot">.</span></p>
+        <h2>How sync works</h2>
+        <div class="docs-prose">
+          <p>Kios syncs your <em>reading position</em> — one position per book, nothing more. Highlights, notes and statistics stay on your device.</p>
+          <p>Your position is saved locally on every page turn, but it's only sent to your server when you background the app, close a book, or return to the app with a push still pending. Page turns never touch the network.</p>
+          <p>When you open a book, Kios asks the server in the background whether another device has read further. If it has — a different chapter, or meaningfully further in the same one — you'll see <em>"Another device is in 'Chapter 12' — switch?"</em> with <strong>Continue</strong> and <strong>Stay here</strong>. Tiny differences are applied silently, and if you've already started reading, the prompt stays out of your way.</p>
+        </div>
+      </section>
+
+      <!-- TASK 5: servers section -->
+
+      <!-- TASK 6: koreader-sync section -->
+
+      <!-- TASK 7: kobo-sync + opds sections -->
+
+      <!-- TASK 8: troubleshooting section -->
+
+    </div>
+  </main>
+
+  <!-- TASK 8: pre-footer band -->
+
+  <!-- ── Footer ────────────────────────────────────────── -->
+  {{ partial "footer.html" . }}
+
+</body>
+</html>
