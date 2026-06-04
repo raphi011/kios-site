@@ -45,3 +45,6 @@ Caddy serves `:8080` with `/health` endpoint.
 - Section pattern: `.section > .wrap > .section-head` with `.eyebrow` + `.section-title`
 - External links: `target="_blank" rel="noopener"`
 - Key links: TestFlight `https://testflight.apple.com/join/fzdZFbtM`, Discord `https://discord.gg/spTFCkhP`
+- `/docs/` server matrix + setup values are hand-maintained; source of truth is the app
+  repo: `~/Git/kios/docs/technical/sync-backends/README.md`. Update the page when the
+  app's compatibility matrix changes.
