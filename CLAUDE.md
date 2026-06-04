@@ -14,9 +14,11 @@ docker build .       # full prod image: hugomods/hugo:exts → caddy:2-alpine, p
 ## Architecture
 
 - `layouts/index.html` — the **entire landing page** as one hardcoded template (no markdown)
-- `layouts/_default/single.html` — **hardcoded privacy page**, not a generic template;
-  `content/privacy.md` exists only to create the `/privacy/` route. New pages need either
-  a new dedicated layout + stub content file, or making single.html actually generic.
+- `layouts/_default/privacy.html` — hardcoded per-page layout, selected via `layout: privacy`
+  frontmatter in `content/privacy.md` (which exists only to create the route). There is
+  deliberately no generic `single.html`; new pages get their own `layout:` + template.
+- `layouts/partials/nav.html` + `footer.html` — shared chrome; `.IsHome` switches link
+  prefixes (`#faq` vs `/#faq`).
 - `assets/site.css` — single stylesheet; design tokens in `:root`, mirrors the app's
   kios-tokens. Dark mode is `prefers-color-scheme` only (no class toggle, no JS).
 - `layouts/partials/device.html` — CSS phone bezel (`.screen-frame`) + `<picture>`
