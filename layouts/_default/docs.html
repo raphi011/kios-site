@@ -4,8 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>Sync servers &amp; setup — Kios docs</title>
-  <meta name="description" content="Which self-hosted ebook servers Kios syncs with — Komga, Calibre-Web, Grimmory, Kavita, Stump and more — and how to configure KOReader sync, Kobo sync and OPDS." />
+  {{ partial "seo.html" (dict
+      "page" .
+      "title" "Sync servers & setup — Kios docs"
+      "description" "Which self-hosted ebook servers Kios syncs with — Komga, Calibre-Web, Grimmory, Kavita, Stump and more — and how to configure KOReader sync, Kobo sync and OPDS."
+      "ogType" "article") }}
   <link rel="icon" href="/site-assets/app-icon.png" />
   {{ $css := resources.Get "site.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />

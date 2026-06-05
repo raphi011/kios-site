@@ -127,13 +127,13 @@ Supporting tactics: compress images (WebP/AVIF), `loading="lazy"` +
 
 | Area | Where | Notes |
 |------|-------|-------|
-| Title & description | `layouts/index.html`, `layouts/_default/single.html` | Unique per page. |
+| Title & description | `layouts/partials/seo.html` | Owned by the partial; each layout passes unique `title`/`description` args. |
 | Single `<h1>`, heading outline | page layouts | Hero `<h1>`, `<h2>`/`<h3>` sections. |
-| Canonical, robots meta, OG, Twitter, theme-color, icons | `layouts/partials/seo.html` | Shared partial included from both layouts. |
+| Canonical, robots meta, OG, Twitter, theme-color, icons | `layouts/partials/seo.html` | Shared partial included from the home, privacy and docs layouts. |
 | Structured data (Organization, WebSite, SoftwareApplication, FAQPage) | `layouts/partials/seo.html` | JSON-LD, built from real page data. |
 | FAQ single source of truth | `data/faq.yaml` | Drives both the visible `<details>` list and the FAQPage schema, so they can't drift. |
-| `robots.txt` + sitemap | `layouts/robots.txt` (+ Hugo's auto `sitemap.xml`), `enableRobotsTXT` in `hugo.toml` | robots points at the sitemap. |
-| Social/OG params | `hugo.toml` `[params]` | `ogImage`, social links. |
+| `robots.txt` + sitemap | `layouts/robots.txt` (+ Hugo's auto `sitemap.xml`), `enableRobotsTXT` in `hugo.toml` | robots points at the sitemap; taxonomy kinds disabled so no phantom URLs. |
+| Social/OG params | `hugo.toml` `[params]` | `ogImage`, `ogImageAlt`, social links. |
 | Performance | existing layout/CSS | Hero image `loading="eager"`, others `lazy`; `width`/`height` set; WebP screenshots; minified CSS; `async` analytics; gzip/zstd + cache headers in `Caddyfile`. |
 
 ### Follow-ups worth doing
@@ -141,8 +141,8 @@ Supporting tactics: compress images (WebP/AVIF), `loading="lazy"` +
 - **Add a dedicated 1200×630 PNG/JPG OG image** (e.g. `static/site-assets/og-image.png`)
   and switch `twitter:card` to `summary_large_image`. The site currently falls
   back to the square 1024×1024 app icon with a `summary` card, which is valid
-  but less eye-catching than a wide banner. Update `params.ogImage` in
-  `hugo.toml` once the image exists.
+  but less eye-catching than a wide banner. Update `params.ogImage` and
+  `params.ogImageAlt` in `hugo.toml` once the image exists.
 - After deploy, **submit `sitemap.xml`** in Google Search Console and Bing
   Webmaster Tools.
 - Run the **Rich Results Test** and the **Facebook/X/LinkedIn** preview

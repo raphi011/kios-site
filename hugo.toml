@@ -1,11 +1,14 @@
 baseURL = "https://kios.raphi011.dev/"
-languageCode = "en-us"
+locale = "en-us"
 title = "Kios"
 enableRobotsTXT = true
+# No taxonomy/term pages on this site; keeps them out of sitemap.xml.
+disableKinds = ["taxonomy", "term"]
 
 [params]
   description = "A calm, native iOS reader for your own EPUB library."
   # Social share image. Square app icon for now (summary card); swap to a
   # dedicated 1200×630 banner and a summary_large_image card when one exists.
   ogImage = "site-assets/app-icon.png"
+  ogImageAlt = "Kios app icon"
   discord = "https://discord.gg/spTFCkhP"

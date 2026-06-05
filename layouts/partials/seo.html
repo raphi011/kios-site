@@ -9,8 +9,15 @@
         "app"         true                    (emit SoftwareApplication schema)
         "faq"         true) }}                 (emit FAQPage schema from data/faq.yaml)
 
-  Emits: canonical, robots, Open Graph, Twitter Card, theme-color, icons, and
-  JSON-LD (Organization + WebSite, plus SoftwareApplication / FAQPage).
+  Owns the page <title> and meta description (don't repeat them in layouts).
+  Emits: title, description, canonical, robots, Open Graph, Twitter Card,
+  theme-color, icons, and JSON-LD (Organization + WebSite, plus
+  SoftwareApplication / FAQPage).
+
+  JSON-LD is emitted as bare dicts, NOT via jsonify: inside
+  <script type="application/ld+json"> Go templates JSON-encode values
+  natively; jsonify returns a string, which the JS-context escaper would
+  wrap in quotes, double-encoding the whole block.
 */ -}}
 {{- $page := .page -}}
 {{- $title := .title | default $page.Title | default site.Title -}}
@@ -18,9 +25,12 @@
 {{- $ogType := .ogType | default "website" -}}
 {{- $url := $page.Permalink -}}
 {{- $img := (site.Params.ogImage | default "site-assets/app-icon.png") | absURL -}}
+{{- $imgAlt := site.Params.ogImageAlt | default site.Title -}}
 {{- $logo := "site-assets/app-icon.png" | absURL -}}
 {{- $discord := site.Params.discord -}}
 
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}" />
 <link rel="canonical" href="{{ $url }}" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 
@@ -31,7 +41,7 @@
 <meta property="og:description" content="{{ $desc }}" />
 <meta property="og:url" content="{{ $url }}" />
 <meta property="og:image" content="{{ $img }}" />
-<meta property="og:image:alt" content="{{ $title }}" />
+<meta property="og:image:alt" content="{{ $imgAlt }}" />
 <meta property="og:locale" content="en_US" />
 
 <!-- Twitter / X -->
@@ -39,9 +49,9 @@
 <meta name="twitter:title" content="{{ $title }}" />
 <meta name="twitter:description" content="{{ $desc }}" />
 <meta name="twitter:image" content="{{ $img }}" />
-<meta name="twitter:image:alt" content="{{ $title }}" />
+<meta name="twitter:image:alt" content="{{ $imgAlt }}" />
 
-<!-- Theme colour & touch icon -->
+<!-- Theme colour & touch icon (hexes mirror the --bg tokens in assets/site.css) -->
 <meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#14110E" media="(prefers-color-scheme: dark)" />
 <link rel="apple-touch-icon" href="/site-assets/app-icon.png" />
@@ -61,9 +71,7 @@
       "url" site.BaseURL
       "description" site.Params.description
       "publisher" (dict "@id" (printf "%s#organization" site.BaseURL)) -}}
-<script type="application/ld+json">
-{{ (dict "@context" "https://schema.org" "@graph" (slice $org $website)) | jsonify (dict "indent" "  ") }}
-</script>
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $org $website) }}</script>
 
 {{- if .app }}
 {{- $screens := slice
@@ -81,14 +89,12 @@
       "image" $logo
       "screenshot" $screens
       "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "USD") -}}
-<script type="application/ld+json">
-{{ $appSchema | jsonify (dict "indent" "  ") }}
-</script>
+<script type="application/ld+json">{{ $appSchema }}</script>
 {{- end }}
 
-{{- if and .faq site.Data.faq }}
+{{- if and .faq hugo.Data.faq }}
 {{- $entities := slice -}}
-{{- range site.Data.faq -}}
+{{- range hugo.Data.faq -}}
   {{- $entities = $entities | append (dict
         "@type" "Question"
         "name" .question
@@ -98,7 +104,5 @@
       "@context" "https://schema.org"
       "@type" "FAQPage"
       "mainEntity" $entities -}}
-<script type="application/ld+json">
-{{ $faqSchema | jsonify (dict "indent" "  ") }}
-</script>
+<script type="application/ld+json">{{ $faqSchema }}</script>
 {{- end }}

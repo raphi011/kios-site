@@ -4,11 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>Kios — A reader for the slow web</title>
-  <meta name="description" content="Kios is a calm, native iOS reader for your own EPUB library. Beautifully set type, gentle reading stats, and sync with KOReader and Kobo. Now in TestFlight beta." />
-  <link rel="icon" href="/site-assets/app-icon.png" />
-  {{ $css := resources.Get "site.css" | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
   {{ partial "seo.html" (dict
       "page" .
       "title" "Kios — A reader for the slow web"
@@ -16,6 +11,9 @@
       "ogType" "website"
       "app" true
       "faq" true) }}
+  <link rel="icon" href="/site-assets/app-icon.png" />
+  {{ $css := resources.Get "site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
   {{ partial "custom-head.html" . }}
 </head>
 <body>
@@ -147,7 +145,7 @@
         <h2 class="section-title">Good to know before you board.</h2>
       </div>
       <div class="faq-list">
-        {{- range site.Data.faq }}
+        {{- range hugo.Data.faq }}
         <details class="faq-item"{{ if .open }} open{{ end }}>
           <summary>{{ .question }}<span class="plus"></span></summary>
           <div class="faq-answer">{{ .answer | safeHTML }}</div>
