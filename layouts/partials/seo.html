@@ -1,0 +1,104 @@
+{{- /*
+  SEO meta + structured data. Call with a dict:
+
+    {{ partial "seo.html" (dict
+        "page"        .                       (required: the Page)
+        "title"       "…"                     (defaults to .Title / site title)
+        "description" "…"                     (defaults to site description)
+        "ogType"      "website"               ("website" | "article")
+        "app"         true                    (emit SoftwareApplication schema)
+        "faq"         true) }}                 (emit FAQPage schema from data/faq.yaml)
+
+  Emits: canonical, robots, Open Graph, Twitter Card, theme-color, icons, and
+  JSON-LD (Organization + WebSite, plus SoftwareApplication / FAQPage).
+*/ -}}
+{{- $page := .page -}}
+{{- $title := .title | default $page.Title | default site.Title -}}
+{{- $desc := .description | default site.Params.description -}}
+{{- $ogType := .ogType | default "website" -}}
+{{- $url := $page.Permalink -}}
+{{- $img := (site.Params.ogImage | default "site-assets/app-icon.png") | absURL -}}
+{{- $logo := "site-assets/app-icon.png" | absURL -}}
+{{- $discord := site.Params.discord -}}
+
+<link rel="canonical" href="{{ $url }}" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="{{ $ogType }}" />
+<meta property="og:site_name" content="{{ site.Title }}" />
+<meta property="og:title" content="{{ $title }}" />
+<meta property="og:description" content="{{ $desc }}" />
+<meta property="og:url" content="{{ $url }}" />
+<meta property="og:image" content="{{ $img }}" />
+<meta property="og:image:alt" content="{{ $title }}" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ $title }}" />
+<meta name="twitter:description" content="{{ $desc }}" />
+<meta name="twitter:image" content="{{ $img }}" />
+<meta name="twitter:image:alt" content="{{ $title }}" />
+
+<!-- Theme colour & touch icon -->
+<meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#14110E" media="(prefers-color-scheme: dark)" />
+<link rel="apple-touch-icon" href="/site-assets/app-icon.png" />
+
+{{- /* ── JSON-LD: Organization + WebSite ─────────────────────────── */ -}}
+{{- $org := dict
+      "@type" "Organization"
+      "@id" (printf "%s#organization" site.BaseURL)
+      "name" site.Title
+      "url" site.BaseURL
+      "logo" $logo -}}
+{{- with $discord }}{{ $org = merge $org (dict "sameAs" (slice .)) }}{{ end -}}
+{{- $website := dict
+      "@type" "WebSite"
+      "@id" (printf "%s#website" site.BaseURL)
+      "name" site.Title
+      "url" site.BaseURL
+      "description" site.Params.description
+      "publisher" (dict "@id" (printf "%s#organization" site.BaseURL)) -}}
+<script type="application/ld+json">
+{{ (dict "@context" "https://schema.org" "@graph" (slice $org $website)) | jsonify (dict "indent" "  ") }}
+</script>
+
+{{- if .app }}
+{{- $screens := slice
+      ("site-assets/home-light.webp" | absURL)
+      ("site-assets/reader-light.webp" | absURL)
+      ("site-assets/stats-light.webp" | absURL) -}}
+{{- $appSchema := dict
+      "@context" "https://schema.org"
+      "@type" "MobileApplication"
+      "name" site.Title
+      "operatingSystem" "iOS"
+      "applicationCategory" "BooksApplication"
+      "url" site.BaseURL
+      "description" site.Params.description
+      "image" $logo
+      "screenshot" $screens
+      "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "USD") -}}
+<script type="application/ld+json">
+{{ $appSchema | jsonify (dict "indent" "  ") }}
+</script>
+{{- end }}
+
+{{- if and .faq site.Data.faq }}
+{{- $entities := slice -}}
+{{- range site.Data.faq -}}
+  {{- $entities = $entities | append (dict
+        "@type" "Question"
+        "name" .question
+        "acceptedAnswer" (dict "@type" "Answer" "text" (.answer | plainify | chomp))) -}}
+{{- end -}}
+{{- $faqSchema := dict
+      "@context" "https://schema.org"
+      "@type" "FAQPage"
+      "mainEntity" $entities -}}
+<script type="application/ld+json">
+{{ $faqSchema | jsonify (dict "indent" "  ") }}
+</script>
+{{- end }}
