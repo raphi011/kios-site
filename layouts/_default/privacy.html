@@ -9,6 +9,11 @@
   <link rel="icon" href="/site-assets/app-icon.png" />
   {{ $css := resources.Get "site.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+  {{ partial "seo.html" (dict
+      "page" .
+      "title" "Privacy Policy — Kios"
+      "description" "How Kios handles your reading data. Your library, highlights and statistics stay on your device."
+      "ogType" "article") }}
   {{ partial "custom-head.html" . }}
 </head>
 <body>

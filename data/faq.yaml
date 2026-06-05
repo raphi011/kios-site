@@ -1,0 +1,39 @@
+# Single source of truth for the on-page FAQ.
+# Rendered both as the visible <details> list in layouts/index.html and as
+# FAQPage JSON-LD in layouts/partials/seo.html, so the two never drift.
+# `answer` may contain inline HTML (links); it is plain-texted for the schema.
+
+- question: What is Kios?
+  open: true
+  answer: >-
+    Kios is a native iOS reader for the EPUBs you already own. No store, no feed,
+    no recommendations — just a calm place to keep, read and finish your own
+    books, with type and themes you control.
+
+- question: How do I join the beta?
+  answer: >-
+    Kios is currently invite-free on Apple TestFlight.
+    <a href="https://testflight.apple.com/join/fzdZFbtM" target="_blank" rel="noopener">Open the TestFlight link</a>,
+    install Apple's TestFlight app if you don't have it, and you'll get every new
+    build automatically.
+
+- question: Which formats does it read?
+  answer: >-
+    Kios reads EPUB. Import your books straight from Files, iCloud Drive or any
+    share sheet — they live in your library on your device.
+
+- question: Can it sync with my e-reader?
+  answer: >-
+    Yes. Kios supports both KOReader Sync and Kobo Sync, so your reading position
+    stays in step between Kios and your e-reader.
+
+- question: Where are my books and data stored?
+  answer: >-
+    On your iPhone. Your library, highlights and statistics stay on the device —
+    nothing is uploaded unless you choose to turn on sync. More detail in our
+    <a href="/privacy/">privacy policy</a>.
+
+- question: Does it cost anything?
+  answer: >-
+    Kios is free while it's in beta, with no ads and no tracking. Pricing after
+    launch hasn't been decided yet — beta readers will hear first.
