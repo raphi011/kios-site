@@ -1,5 +1,7 @@
 # --- build stage: render the Hugo site ---
-FROM hugomods/hugo:exts AS build
+# Pinned: the floating `exts` tag froze at hugo 0.154.5 (scheme change);
+# keep this in step with the local dev hugo version.
+FROM hugomods/hugo:0.162.1 AS build
 WORKDIR /src
 COPY . .
 RUN hugo --minify --gc --destination /public
